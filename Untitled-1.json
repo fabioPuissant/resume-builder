@@ -1,0 +1,177 @@
+[
+    {
+      "resume": {
+        "resumeSections": {
+          "personalInfo": {
+            "name": "Fabio N. Puissant",
+            "email": "fabio.puissant@example.com",
+            "phone": "+32 123 456 789",
+            "linkedin": "https://www.linkedin.com/in/fabio-puissant",
+            "location": "Brussels, Belgium"
+          },
+          "summary": "I am a passionate Software Engineer and Cloud/DevOps practitioner with extensive experience in developing scalable cloud-native solutions. My expertise encompasses CI/CD best practices, Infrastructure as Code principles, and a strong command of multiple cloud platforms, positioning me as a versatile and innovative contributor to any engineering team.",
+          "workExperience": [
+            {
+              "jobTitle": "Software Engineer Technical Consultant",
+              "company": "ACA Consulting",
+              "location": "Brussels, Belgium",
+              "startDate": "01/2024",
+              "endDate": "Present",
+              "achievements": [
+                "Led the design and development of a project-resource planning solution that increased efficiency by 30%, employing Java 17 with Spring Framework and microservices architecture deployed through Kubernetes.",
+                "Integrated Kafka for asynchronous communications, enhancing system reliability and performance across multiple applications, while ensuring a responsive front end using React (TypeScript) and Redux."
+              ]
+            },
+            {
+              "jobTitle": "Azure Developer Technical Consultant",
+              "company": "Delaware Consulting",
+              "location": "Brussels, Belgium",
+              "startDate": "01/2022",
+              "endDate": "12/2023",
+              "achievements": [
+                "Drove the development of an insurance claims portal using .NET Core 6 and ReactJS, improving user experience and operational efficiency for AXA Insurance.",
+                "Implemented automated CI/CD pipelines utilizing Azure DevOps, reducing deployment times by 40% and increasing the consistency of production environments through Infrastructure as Code templates."
+              ]
+            },
+            {
+              "jobTitle": "Full Stack Engineer Intern",
+              "company": "BeWired",
+              "location": "Hasselt, Belgium",
+              "startDate": "06/2021",
+              "endDate": "09/2021",
+              "achievements": [
+                "Contributed to the development of an internal platform, applying Agile methodologies, and utilizing Java, Spring Boot, and AWS services, leading to improved team collaboration and reduced project timelines."
+              ]
+            }
+          ],
+          "education": [
+            {
+              "degree": "Master of Science in Computer Science (Major in Software Engineering)",
+              "institution": "Open University",
+              "location": "Heerlen, NL (Remote)",
+              "graduationDate": "12/2023",
+              "relevantCoursework": [
+                "Advanced Software Development",
+                "Cloud Computing",
+                "DevOps Practices"
+              ]
+            },
+            {
+              "degree": "Bachelor of Applied Informatics",
+              "institution": "PXL University of Applied Sciences",
+              "location": "Hasselt, Belgium",
+              "graduationDate": "06/2021",
+              "relevantCoursework": [
+                "Software Development",
+                "Database Management",
+                "Systems Analysis"
+              ]
+            }
+          ],
+          "skills": {
+            "technical": [
+              "C#",
+              "Java (up to Java 17)",
+              "Python",
+              "TypeScript",
+              ".NET Core (6)",
+              "Spring Boot",
+              "ReactJS",
+              "Redux",
+              "Angular",
+              "Jenkins",
+              "Azure DevOps",
+              "Terraform",
+              "Kubernetes",
+              "AWS",
+              "Google Cloud Platform"
+            ],
+            "professional": [
+              "Agile Methodologies",
+              "Cross-Functional Collaboration",
+              "Problem-Solving",
+              "Effective Communication"
+            ]
+          },
+          "certifications": [
+            {
+              "name": "CKAD – Certified Kubernetes Application Developer",
+              "issuer": "Linux Foundation",
+              "dateEarned": "05/2024"
+            },
+            {
+              "name": "Microsoft Azure Fundamentals",
+              "issuer": "Microsoft",
+              "dateEarned": "01/2024"
+            },
+            {
+              "name": "Azure Developer Associate",
+              "issuer": "Microsoft",
+              "dateEarned": "11/2023"
+            },
+            {
+              "name": "Azure DevOps Solutions Expert",
+              "issuer": "Microsoft",
+              "dateEarned": "06/2023"
+            }
+          ],
+          "languages": [
+            {
+              "language": "Dutch",
+              "proficiency": "Native"
+            },
+            {
+              "language": "English",
+              "proficiency": "Proficient"
+            },
+            {
+              "language": "French",
+              "proficiency": "Intermediate"
+            }
+          ],
+          "projects": [
+            {
+              "name": "Cross-Platform Aquaponics Mobile App",
+              "description": "Designed and built a mobile application to educate communities on sustainable aquaponics practices, effectively promoting local agricultural practices. Delivered both mobile and web interfaces, which significantly boosted community engagement in sustainable farming practices.",
+              "techStack": [
+                "Flutter",
+                "ASP.NET Core",
+                "ReactJS",
+                "Redux"
+              ],
+              "dates": "01/2022 - 04/2022"
+            },
+            {
+              "name": "Insurance Claims Portal",
+              "description": "Architected a cloud-based portal for processing insurance claims, optimizing digital workflows and improving claims processing time. Implemented CI/CD strategies that ensured quality and timely updates to the application.",
+              "techStack": [
+                ".NET Core",
+                "ReactJS",
+                "Azure",
+                "Terraform"
+              ],
+              "dates": "06/2022 - 02/2023"
+            }
+          ],
+          "achievements": [
+            "Recipient of the Best Intern Award at BeWired for outstanding performance and contribution in software development projects.",
+            "Published a paper on cloud-native application design in the International Journal of Software Engineering."
+          ],
+          "optionalSections": {
+            "volunteerWork": [
+              "Volunteer tutor for coding and computer science topics in local schools."
+            ],
+            "professionalAffiliations": [
+              "Member of the Belgian Computer Society",
+              "Participant in local DevOps meetups and workshops."
+            ],
+            "interests": [
+              "Cloud-native technologies",
+              "Open-source contributions",
+              "Mentoring young developers"
+            ]
+          }
+        }
+      }
+    }
+  ]
