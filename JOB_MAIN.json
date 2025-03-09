@@ -1,0 +1,709 @@
+{
+  "name": "JOB_MAIN",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -260,
+        0
+      ],
+      "id": "43383740-3c83-43ee-b99f-1a58db1902a1",
+      "name": "When chat message received",
+      "webhookId": "c99f071e-69e2-4018-a1e6-35c567449c91"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are an agent. Your task is to output exactly what the input of the previous messsage was"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        -40,
+        0
+      ],
+      "id": "815cbeb7-8628-4622-aa35-2a3d6ff01ce0",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -20,
+        160
+      ],
+      "id": "9096d637-8c31-48f7-8916-b27ceadecc95",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "DrtNUIrVUb7N93uE",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "GOONJdiQegkGhqrm",
+          "mode": "list",
+          "cachedResultName": "GetUserContext"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        380,
+        140
+      ],
+      "id": "a13ee12a-20b5-4297-89bc-554d7265fef9",
+      "name": "Execute GetUserResume"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "cARR1QLencUM3spX",
+          "mode": "list",
+          "cachedResultName": "GetJobListing"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "job_content": "={{ $json.output }}"
+          },
+          "matchingColumns": [
+            "job_content"
+          ],
+          "schema": [
+            {
+              "id": "job_content",
+              "displayName": "job_content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        380,
+        -120
+      ],
+      "id": "46128062-2728-4043-a430-71d92ea36ecb",
+      "name": "Execute GetJobListing"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        900,
+        -20
+      ],
+      "id": "bb9a2ac5-8f90-4e90-aa41-540ee059dc67",
+      "name": "Merge",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "jsCode": "\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        600,
+        140
+      ],
+      "id": "4b4bae66-7218-4ded-8fd1-786b28f24a9f",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "jsCode": "const all = $input.first().json.result;\nconst jobListing = {\n  \"job_listing\": all\n}\nreturn jobListing;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        600,
+        -120
+      ],
+      "id": "f1e2918c-e2ad-494a-993b-0416f3099ac1",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentURL": "https://docs.google.com/document/d/1qRbO9ptGhDqx-1tybxQm6Hpbn5Wj2JxPRbx4gBZ2png/edit?usp=sharing",
+        "actionsUi": {
+          "actionFields": [
+            {
+              "action": "insert",
+              "text": "={{ $json.content }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.googleDocs",
+      "typeVersion": 2,
+      "position": [
+        2840,
+        -20
+      ],
+      "id": "1386f2bd-94ed-4bc5-9bba-a373be06443e",
+      "name": "Google Docs",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "cHERtwE7y55w0NRD",
+          "name": "Google Docs account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "\nreturn {\n  \"download-url\": \"https://docs.google.com/document/d/1qRbO9ptGhDqx-1tybxQm6Hpbn5Wj2JxPRbx4gBZ2png/edit?usp=sharing\"\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3140,
+        -20
+      ],
+      "id": "8b7f5ffe-0e70-49d4-bf9e-8541d68a4b49",
+      "name": "Code2"
+    },
+    {
+      "parameters": {
+        "jsCode": "const content = $input.first().json.message.content\nreturn {\n  resume: content\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2600,
+        -20
+      ],
+      "id": "ed7b84a2-5628-4bab-87bd-bb7875f28af1",
+      "name": "Code3"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4",
+          "mode": "list",
+          "cachedResultName": "GPT-4"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=<prompt>\n    <context>\n        You receive two inputs:\n        1) The applicant’s detailed background.\n        2) A job description in JSON format, where each field describes a section and its values are the requirements.\n    </context>\n    <goal>\n        Merge these inputs into a single, polished resume that clearly demonstrates how the applicant meets the job requirements.\n    </goal>\n    <requirements>\n        <requirement>Reuse the job description’s keywords where possible, emphasizing the applicant’s matching skills and experiences.</requirement>\n        <requirement>Write in the first person, as if the applicant is describing their qualifications.</requirement>\n        <requirement>You may add credible, non-contradictory details to strengthen the resume.</requirement>\n    </requirements>\n    <instructions>\n        <instruction>Output must be valid HTML/CSS wrapped in a single <html>…</html> document.</instruction>\n        <instruction>The output must contain no newline (\\\\n) characters; everything must be in one continuous line.</instruction>\n        <instruction>Do not include any additional commentary or code fencing outside the HTML.</instruction>\n        <instruction>If an error occurs, still return one line of valid HTML containing an error message.</instruction>\n    </instructions>\n    <output>\n        A single-line HTML/CSS resume demonstrating how the user aligns with the job listing.\n    </output>\n</prompt>\n",
+              "role": "system"
+            },
+            {
+              "content": "=The job description in JSON format:: {{ $json.job_listing }}\n---\n\nThe applicant's detailed background:: {{ $json.profile_description }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        1100,
+        -220
+      ],
+      "id": "8d0c143f-5e31-4412-bf98-15b920654b56",
+      "name": "HTML GEN",
+      "credentials": {
+        "openAiApi": {
+          "id": "DrtNUIrVUb7N93uE",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini-2024-07-18",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI-2024-07-18"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=<prompt>\n    <context>\n        You have three inputs:\n        1) The applicant’s detailed background (user_profile).\n        2) A job description (job_listing) in JSON format, detailing requirements.\n        3) A JSON object specifying the resume sections (resume_structure).\n    </context>\n    <goal>\n        Craft a LaTeX resume that aligns the applicant’s qualifications with the job requirements, ensuring the result is both ATS-optimized and appealing to human reviewers.\n    </goal>\n    <requirements>\n        <requirement>Identify key elements in the job listing and highlight how the applicant meets or exceeds them.</requirement>\n        <requirement>Incorporate first-person language where appropriate.</requirement>\n        <requirement>Use the provided JSON object (resume_structure) to organize the resume. Populate each section with relevant details from the applicant’s background.</requirement>\n        <requirement>Add credible details if necessary, provided they do not contradict the applicant’s background or the job listing.</requirement>\n    </requirements>\n    <instructions>\n        <instruction>Output may contain multiple lines but must only include valid LaTeX code. No additional commentary or text beyond the LaTeX code is allowed.</instruction>\n        <instruction>Do not escape commands or characters. For example, use \\section{}, not \\\\section{}.</instruction>\n        <instruction>If there is missing or invalid data, return valid LaTeX that includes an appropriate error message in place of the resume content.</instruction>\n        <instruction>Do not include code fences or explanations—only the LaTeX code itself.</instruction>\n    </instructions>\n    <output>\n        A valid LaTeX resume reflecting the user’s background and the job requirements, optimized for ATS and appealing to human reviewers.\n    </output>\n</prompt>\n",
+              "role": "system"
+            },
+            {
+              "content": "=job_listing:: {{ $json.job_listing }}\n---\nuser_profile::{{ $json.profile_description }}\n---\nresume_structure:: \n{\n  \"resumeSections\": {\n    \"personalInfo\": {\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"linkedin\": \"string\",\n      \"location\": \"string\"\n    },\n    \"summary\": \"string (3-4 lines highlighting key qualifications)\",\n    \"workExperience\": [\n      {\n        \"jobTitle\": \"string\",\n        \"company\": \"string\",\n        \"location\": \"string\",\n        \"startDate\": \"string (MM/YYYY)\",\n        \"endDate\": \"string (MM/YYYY) or 'Present'\",\n        \"achievements\": [\"string (action verbs + metrics)\", \"...\"]\n      }\n    ],\n    \"education\": [\n      {\n        \"degree\": \"string\",\n        \"institution\": \"string\",\n        \"location\": \"string\",\n        \"graduationDate\": \"string (MM/YYYY)\",\n        \"relevantCoursework\": [\"string\", \"...\"]\n      }\n    ],\n    \"skills\": {\n      \"technical\": [\"string (tools/languages)\", \"...\"],\n      \"professional\": [\"string (soft skills)\", \"...\"]\n    },\n    \"certifications\": [\n      {\n        \"name\": \"string\",\n        \"issuer\": \"string\",\n        \"dateEarned\": \"string (MM/YYYY)\"\n      }\n    ],\n    \"languages\": [\n      {\n        \"language\": \"string\",\n        \"proficiency\": \"string (Native/Bilingual/Proficient/Intermediate/Basic)\"\n      }\n    ],\n    \"projects\": [\n      {\n        \"name\": \"string\",\n        \"description\": \"string (problem solved + impact)\",\n        \"techStack\": [\"string\", \"...\"],\n        \"dates\": \"string (MM/YYYY - MM/YYYY)\"\n      }\n    ],\n    \"achievements\": [\"string (awards/publications)\", \"...\"],\n    \"optionalSections\": {\n      \"volunteerWork\": [\"string\", \"...\"],\n      \"professionalAffiliations\": [\"string\", \"...\"],\n      \"interests\": [\"string (job-relevant only)\", \"...\"]\n    }\n  }\n}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        1480,
+        160
+      ],
+      "id": "ea4787d4-b0c3-445f-b23e-9044ef945c4a",
+      "name": "Latex Gen",
+      "credentials": {
+        "openAiApi": {
+          "id": "DrtNUIrVUb7N93uE",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://raw.githubusercontent.com/fabioPuissant/resume-builder/refs/heads/main/resume_template.tex",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        380,
+        500
+      ],
+      "id": "ae923726-03d5-41f6-ad0c-bdf3ce09c2ce",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.profile_description}}",
+        "schemaType": "fromJson",
+        "jsonSchemaExample": "{\n  \"resumeSections\": {\n    \"personalInfo\": {\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"linkedin\": \"string\",\n      \"location\": \"string\"\n    },\n    \"summary\": \"string (3-4 lines highlighting key qualifications)\",\n    \"workExperience\": [\n      {\n        \"jobTitle\": \"string\",\n        \"company\": \"string\",\n        \"location\": \"string\",\n        \"startDate\": \"string (MM/YYYY)\",\n        \"endDate\": \"string (MM/YYYY) or 'Present'\",\n        \"achievements\": [\"string (action verbs + metrics)\", \"...\"]\n      }\n    ],\n    \"education\": [\n      {\n        \"degree\": \"string\",\n        \"institution\": \"string\",\n        \"location\": \"string\",\n        \"graduationDate\": \"string (MM/YYYY)\",\n        \"relevantCoursework\": [\"string\", \"...\"]\n      }\n    ],\n    \"skills\": {\n      \"technical\": [\"string (tools/languages)\", \"...\"],\n      \"professional\": [\"string (soft skills)\", \"...\"]\n    },\n    \"certifications\": [\n      {\n        \"name\": \"string\",\n        \"issuer\": \"string\",\n        \"dateEarned\": \"string (MM/YYYY)\"\n      }\n    ],\n    \"languages\": [\n      {\n        \"language\": \"string\",\n        \"proficiency\": \"string (Native/Bilingual/Proficient/Intermediate/Basic)\"\n      }\n    ],\n    \"projects\": [\n      {\n        \"name\": \"string\",\n        \"description\": \"string (problem solved + impact)\",\n        \"techStack\": [\"string\", \"...\"],\n        \"dates\": \"string (MM/YYYY - MM/YYYY)\"\n      }\n    ],\n    \"achievements\": [\"string (awards/publications)\", \"...\"],\n    \"optionalSections\": {\n      \"volunteerWork\": [\"string\", \"...\"],\n      \"professionalAffiliations\": [\"string\", \"...\"],\n      \"interests\": [\"string (job-relevant only)\", \"...\"]\n    }\n  }\n}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1,
+      "position": [
+        300,
+        780
+      ],
+      "id": "a3846716-484b-4c53-b3ba-ecb0eaf31050",
+      "name": "Information Extractor"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {
+          "responseFormat": "json_object"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        120,
+        520
+      ],
+      "id": "b90c974f-cac1-4231-b68c-924a3e7c7a24",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "DrtNUIrVUb7N93uE",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini-2024-07-18",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI-2024-07-18"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=<prompt>\n    <context>\n        You have three inputs:\n        1) The applicant’s detailed background (user_profile).\n        2) A job description (job_listing) in JSON format, detailing requirements.\n        3) A JSON object specifying the resume sections (resume_structure).\n    </context>\n    <goal>\n        Craft a resume using HTML and CSS that aligns the applicant’s qualifications with the job requirements, ensuring the result is both ATS-optimized and visually appealing. This HTML/CSS will later be converted to a PDF.\n    </goal>\n    <requirements>\n        <requirement>Identify key elements in the job listing and highlight how the applicant meets or exceeds them.</requirement>\n        <requirement>Incorporate first-person language where appropriate.</requirement>\n        <requirement>Use the provided JSON object (resume_structure) to organize the resume. Populate each section with relevant details from the applicant’s background.</requirement>\n        <requirement>Add credible details if necessary, provided they do not contradict the applicant’s background or the job listing.</requirement>\n        <requirement>Ensure the resume is extensive. In the projects and past experiences sections, use long, meaningful sentences to give detailed accounts of achievements and responsibilities.</requirement>\n    </requirements>\n    <instructions>\n        <instruction>Output may contain multiple lines but must include only valid HTML and CSS. No additional commentary or text beyond the code is allowed.</instruction>\n        <instruction>If there is missing or invalid data, return valid HTML/CSS that includes an appropriate error message in place of the resume content.</instruction>\n        <instruction>Do not include any code fences or explanations—only the HTML/CSS code itself.</instruction>\n    </instructions>\n    <output>\n        A complete HTML file with embedded or linked CSS that reflects the user’s background and the job requirements, optimized for ATS and appealing to human reviewers, featuring detailed and descriptive sections for projects and past experiences.\n    </output>\n</prompt>",
+              "role": "system"
+            },
+            {
+              "content": "=job_listing:: {{ $json.job_listing }}\n---\nuser_profile::{{ $json.profile_description }}\n---\nresume_structure:: \n{\n  \"resumeSections\": {\n    \"personalInfo\": {\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"linkedin\": \"string\",\n      \"location\": \"string\"\n    },\n    \"summary\": \"string (3-4 lines highlighting key qualifications)\",\n    \"workExperience\": [\n      {\n        \"jobTitle\": \"string\",\n        \"company\": \"string\",\n        \"location\": \"string\",\n        \"startDate\": \"string (MM/YYYY)\",\n        \"endDate\": \"string (MM/YYYY) or 'Present'\",\n        \"achievements\": [\"string (action verbs + metrics)\", \"...\"]\n      }\n    ],\n    \"education\": [\n      {\n        \"degree\": \"string\",\n        \"institution\": \"string\",\n        \"location\": \"string\",\n        \"graduationDate\": \"string (MM/YYYY)\",\n        \"relevantCoursework\": [\"string\", \"...\"]\n      }\n    ],\n    \"skills\": {\n      \"technical\": [\"string (tools/languages)\", \"...\"],\n      \"professional\": [\"string (soft skills)\", \"...\"]\n    },\n    \"certifications\": [\n      {\n        \"name\": \"string\",\n        \"issuer\": \"string\",\n        \"dateEarned\": \"string (MM/YYYY)\"\n      }\n    ],\n    \"languages\": [\n      {\n        \"language\": \"string\",\n        \"proficiency\": \"string (Native/Bilingual/Proficient/Intermediate/Basic)\"\n      }\n    ],\n    \"projects\": [\n      {\n        \"name\": \"string\",\n        \"description\": \"string (problem solved + impact)\",\n        \"techStack\": [\"string\", \"...\"],\n        \"dates\": \"string (MM/YYYY - MM/YYYY)\"\n      }\n    ],\n    \"achievements\": [\"string (awards/publications)\", \"...\"],\n    \"optionalSections\": {\n      \"volunteerWork\": [\"string\", \"...\"],\n      \"professionalAffiliations\": [\"string\", \"...\"],\n      \"interests\": [\"string (job-relevant only)\", \"...\"]\n    }\n  }\n}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        1480,
+        380
+      ],
+      "id": "7fdc4af2-f2d1-45c5-9eed-eeaa92301df0",
+      "name": "HTML GEN1",
+      "credentials": {
+        "openAiApi": {
+          "id": "DrtNUIrVUb7N93uE",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini-2024-07-18",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI-2024-07-18"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=<prompt>\n    <context>\n        You have three inputs:\n        1) The applicant’s detailed background (user_profile).\n        2) A job description (job_listing) in JSON format, detailing requirements.\n        3) A JSON object (resume_structure) specifying the sections for the resume.\n    </context>\n    <goal>\n        Craft a resume that aligns the applicant’s qualifications with the job requirements, ensuring the result is both ATS-optimized and extensively detailed, especially for projects and past experiences. The final output must be a JSON object following the structure of resume_structure.\n    </goal>\n    <requirements>\n        <requirement>Identify key elements in the job listing and highlight how the applicant meets or exceeds them.</requirement>\n        <requirement>Incorporate first-person language where appropriate.</requirement>\n        <requirement>Use the provided JSON object (resume_structure) to organize the resume. Populate each section with relevant details from the applicant’s background.</requirement>\n        <requirement>Add credible details if necessary, provided they do not contradict the applicant’s background or the job listing.</requirement>\n        <requirement>Ensure the resume is extensive. In the projects and past experiences sections, use long, meaningful sentences to provide detailed accounts of past experiences, projects, and responsibilities.</requirement>\n    </requirements>\n    <instructions>\n        <instruction>Output must be valid JSON and must not include any additional commentary or text beyond the JSON object itself.</instruction>\n        <instruction>Adhere strictly to the structure defined by resume_structure. Each section must be filled with generated content based on the applicant’s profile and the job requirements.</instruction>\n        <instruction>If there is missing or invalid data, return valid JSON that includes an appropriate error message within the relevant field(s).</instruction>\n    </instructions>\n    <output>\n        A valid JSON object (following resume_structure) that reflects the user’s background and the job requirements, optimized for ATS and featuring extensive, descriptive text in the projects and past experiences sections.\n    </output>\n</prompt>",
+              "role": "system"
+            },
+            {
+              "content": "=job_listing:: {{ $json.job_listing }}\n---\nuser_profile::{{ $json.profile_description }}\n---\nresume_structure:: \n{\n  \"resumeSections\": {\n    \"personalInfo\": {\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"linkedin\": \"string\",\n      \"location\": \"string\"\n    },\n    \"summary\": \"string (3-4 lines highlighting key qualifications)\",\n    \"workExperience\": [\n      {\n        \"jobTitle\": \"string\",\n        \"company\": \"string\",\n        \"location\": \"string\",\n        \"startDate\": \"string (MM/YYYY)\",\n        \"endDate\": \"string (MM/YYYY) or 'Present'\",\n        \"achievements\": [\"string (action verbs + metrics)\", \"...\"]\n      }\n    ],\n    \"education\": [\n      {\n        \"degree\": \"string\",\n        \"institution\": \"string\",\n        \"location\": \"string\",\n        \"graduationDate\": \"string (MM/YYYY)\",\n        \"relevantCoursework\": [\"string\", \"...\"]\n      }\n    ],\n    \"skills\": {\n      \"technical\": [\"string (tools/languages)\", \"...\"],\n      \"professional\": [\"string (soft skills)\", \"...\"]\n    },\n    \"certifications\": [\n      {\n        \"name\": \"string\",\n        \"issuer\": \"string\",\n        \"dateEarned\": \"string (MM/YYYY)\"\n      }\n    ],\n    \"languages\": [\n      {\n        \"language\": \"string\",\n        \"proficiency\": \"string (Native/Bilingual/Proficient/Intermediate/Basic)\"\n      }\n    ],\n    \"projects\": [\n      {\n        \"name\": \"string\",\n        \"description\": \"string (problem solved + impact)\",\n        \"techStack\": [\"string\", \"...\"],\n        \"dates\": \"string (MM/YYYY - MM/YYYY)\"\n      }\n    ],\n    \"achievements\": [\"string (awards/publications)\", \"...\"],\n    \"optionalSections\": {\n      \"volunteerWork\": [\"string\", \"...\"],\n      \"professionalAffiliations\": [\"string\", \"...\"],\n      \"interests\": [\"string (job-relevant only)\", \"...\"]\n    }\n  }\n}"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        2000,
+        -40
+      ],
+      "id": "efc2cd9e-fac7-49a9-8d26-d09edd205841",
+      "name": "JSON GEN",
+      "credentials": {
+        "openAiApi": {
+          "id": "DrtNUIrVUb7N93uE",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=<prompt>\n<context>\n<role>You are a resume checker</role>\n<goal>Your goal is to check a resume against a job description. You answer if the applicant is good for the job description or not. The resume of the applicant and the job description for which the applicant is applying is given as JSON input.</goal>\n<inputs>\n<input>The job description where the job is described in JSON format. This has multiple fields. Go through each field to know the full job listing.</input>\n<input>The apllicant's resume and profile description in JSON format.</input>\n</inputs>\n</context>\n<tasks>\n  <task>Analyse the job description JSON</task>\n  <task>Analyse the applicant resume description JSON</task>\n  <task>See if the applicant fits the profile/task>\n  <task>Give a percentage on how well the applicant matches the sought after professional in the job description</task>\n</tasks>\n<instructions>\n  <instruction>Compate the resume and the job description and find how well the applicant matches the profile of the job description</instruction>\n  <instruction>Only use the inputs given, do not halucinate.</instruction>\n  <instruction>Your output is JSON only, no additional text</instruction>\n  <instruction>Your output is in JSON format and contains four fields: 'percentage' which is the percentage you give the applicant and 'fits' which is a boolean value that concludes if the applicant fits the profile or not, and the third field is 'reason' that is a string where you explain the percentage, and the last field is 'error' a string value where you explain if something went wrong and is empty if nothing went wrong</instruction>\n</instructions>\n<output>Valid JSON object without any additional text. The JSON object contains only three fields: 'percentage', the second field is 'fits', the third field is 'reason'</output>\n</prompt>\n\n",
+              "role": "system"
+            },
+            {
+              "content": "=---\n\nHere is the job description as JSON\n{{ $json.job_listing.job_description }} {{ $json.job_listing.responsibilities }}\n---\nHere is the profile desription as JSON\n{{ $json.profile_description }}"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        920,
+        180
+      ],
+      "id": "4cfadc17-6b29-400b-98e0-1513e9fa9ab7",
+      "name": "OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "DrtNUIrVUb7N93uE",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9d48131d-f6a1-4c78-8bf2-e2fe5ef9aeb6",
+              "leftValue": "={{ $json.message.content.fits }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "86d1bf73-3c16-4511-9e99-abc2b5db268f",
+              "leftValue": "={{ $json.message.content.fits }}",
+              "rightValue": "true",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1260,
+        180
+      ],
+      "id": "516ae5d0-7ca3-4fc6-b4c1-1d1d48c65a43",
+      "name": "If"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Execute GetJobListing",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Execute GetUserResume",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute GetUserResume": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute GetJobListing": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Docs": {
+      "main": [
+        [
+          {
+            "node": "Code2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code3": {
+      "main": [
+        [
+          {
+            "node": "Google Docs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTML GEN": {
+      "main": [
+        []
+      ]
+    },
+    "Latex Gen": {
+      "main": [
+        []
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        []
+      ]
+    },
+    "Information Extractor": {
+      "main": [
+        []
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTML GEN1": {
+      "main": [
+        [
+          {
+            "node": "Code3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "JSON GEN": {
+      "main": [
+        [
+          {
+            "node": "Code3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Latex Gen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "9467f39f-9e6d-43cc-87bf-d5fd634c3977",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "21881287e5254e499471e21d1ed21577b68ac8378ad7ebcc44082284decf7698"
+  },
+  "id": "CcCQS41CIPRZ5ge2",
+  "tags": []
+}

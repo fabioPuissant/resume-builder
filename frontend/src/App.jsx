@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import ResumePDF from './ResumePDF';
-import ExperiencesSection from './components/sections/Experiences/experiences.section';
-import EductionSection from './components/sections/Education/eduction.section';
-import SkillsSection from './components/sections/Skills/skills.section';
-import SummarySection from './components/sections/Summary/summary.section';
-import CertificationsSection from './components/sections/Certifications/certification.section';
+import ExperiencesSection from './components/sections/Experiences/Experiences.section';
+import EductionSection from './components/sections/Education/Eduction.section';
+import SkillsSection from './components/sections/Skills/Skills.section';
+import SummarySection from './components/sections/Summary/Summary.section';
+import CertificationsSection from './components/sections/Certifications/Certification.section';
 
 function App() {
   const [resumeData, setResumeData] = useState(null);

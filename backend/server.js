@@ -1,5 +1,5 @@
 // server.js
-const example = require('./example.json')
+const example = require('./example2.json')
 const express = require('express');
 const app = express();
 const cors = require('cors');

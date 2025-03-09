@@ -1,0 +1,181 @@
+[
+    {
+        "resume": {
+            "resumeSections": {
+                "personalInfo": {
+                    "name": "Fabio N. Puissant",
+                    "email": "fabio.puissant@example.com",
+                    "phone": "+32 123 456 789",
+                    "linkedin": "https://www.linkedin.com/in/fabio-puissant",
+                    "location": "Hasselt, Belgium"
+                },
+                "summary": "Dedicated Software Engineer and Cloud/DevOps practitioner with comprehensive experience in cloud-native architectures, CI/CD practices, and Infrastructure as Code. Proven ability to leverage diverse tech stacks and tools, delivering scalable and secure solutions while thriving in agile, cross-functional environments.",
+                "workExperience": [
+                    {
+                        "jobTitle": "Software Engineer Technical Consultant",
+                        "company": "ACA Consulting",
+                        "location": "Remote",
+                        "startDate": "01/2024",
+                        "endDate": "Present",
+                        "achievements": [
+                            "Designed an end-to-end project-resource planning solution with agile methodology, improving deployment speed by 30%.",
+                            "Leveraged Kafka for asynchronous communication and integrated React (TypeScript) + Redux for responsive front-end experiences, enhancing user engagement.",
+                            "Demonstrated proficiency in building and deploying containerized applications using Docker and Terraform, streamlining DevOps processes."
+                        ]
+                    },
+                    {
+                        "jobTitle": "Azure Developer Technical Consultant",
+                        "company": "Delaware Consulting",
+                        "location": "Remote",
+                        "startDate": "02/2022",
+                        "endDate": "12/2024",
+                        "achievements": [
+                            "Contributed to the development of an insurance claims portal utilizing .NET Core 6, ReactJS, and various Azure tools, resulting in improved claims processing efficiency.",
+                            "Championed automated CI/CD pipelines via Azure DevOps, achieving 40% faster deployment cycles.",
+                            "Created Infrastructure as Code templates (ARM, Bicep, Terraform) ensuring consistent resource provisioning across environments, enhancing environment stability."
+                        ]
+                    },
+                    {
+                        "jobTitle": "Full Stack Engineer Intern",
+                        "company": "BeWired",
+                        "location": "Hasselt, Belgium",
+                        "startDate": "06/2021",
+                        "endDate": "08/2021",
+                        "achievements": [
+                            "Gained hands-on experience with Java, Spring Boot, Angular, and AWS, contributing to the development of an internal employee platform.",
+                            "Applied agile methodologies effectively through active participation in Scrum processes, enhancing team collaboration and project outcomes."
+                        ]
+                    },
+                    {
+                        "jobTitle": "Flutter Mobile App Developer Intern",
+                        "company": "Botlhale Village",
+                        "location": "Pretoria, South Africa",
+                        "startDate": "06/2020",
+                        "endDate": "08/2020",
+                        "achievements": [
+                            "Designed and built a cross-platform mobile app teaching sustainable aquaponics, positively impacting local communities by promoting eco-friendly practices.",
+                            "Utilized ASP.NET Core for backend design, ensuring a robust and scalable application architecture."
+                        ]
+                    }
+                ],
+                "education": [
+                    {
+                        "degree": "Master of Science in Computer Science",
+                        "institution": "Open University",
+                        "location": "Heerlen, Netherlands (Remote)",
+                        "graduationDate": "09/2023",
+                        "relevantCoursework": [
+                            "Software Engineering",
+                            "Cloud Computing",
+                            "DevOps Practices"
+                        ]
+                    },
+                    {
+                        "degree": "Bachelor of Applied Informatics",
+                        "institution": "PXL University of Applied Sciences",
+                        "location": "Hasselt, Belgium",
+                        "graduationDate": "06/2021",
+                        "relevantCoursework": [
+                            "Software Development",
+                            "Database Management",
+                            "Software Engineering Methodologies"
+                        ]
+                    }
+                ],
+                "skills": {
+                    "technical": [
+                        "C#, Java (up to Java 17), Python, TypeScript",
+                        ".NET Core (6), Spring Boot, Quarkus, ReactJS, Redux, Angular",
+                        "ASP.NET Core, Hibernate/JPA, MongoDB, Microsoft SQL Server, Azure Cosmos DB",
+                        "Jenkins, Azure DevOps, GitOps (FluxCD), JFrog Artifactory",
+                        "Microsoft Azure, AWS (EKS, EC2, S3, RDS), Google Cloud Platform",
+                        "Terraform, Bicep, ARM Templates, YAML-based pipeline definitions"
+                    ],
+                    "professional": [
+                        "Adaptability",
+                        "Cross-Functional Collaboration",
+                        "Problem-Solving",
+                        "Effective Communication",
+                        "Agile Methodologies"
+                    ]
+                },
+                "certifications": [
+                    {
+                        "name": "CKAD – Certified Kubernetes Application Developer",
+                        "issuer": "The Linux Foundation",
+                        "dateEarned": "05/2023"
+                    },
+                    {
+                        "name": "Microsoft Azure: AZ-900, AZ-104, AZ-400",
+                        "issuer": "Microsoft",
+                        "dateEarned": "Various"
+                    },
+                    {
+                        "name": "MongoDB SI Associate Certification",
+                        "issuer": "MongoDB",
+                        "dateEarned": "11/2023"
+                    },
+                    {
+                        "name": "Databricks Academy Accreditation – Generative AI Fundamentals",
+                        "issuer": "Databricks",
+                        "dateEarned": "06/2024"
+                    }
+                ],
+                "languages": [
+                    {
+                        "language": "Dutch",
+                        "proficiency": "Native"
+                    },
+                    {
+                        "language": "English",
+                        "proficiency": "Proficient"
+                    },
+                    {
+                        "language": "French",
+                        "proficiency": "Basic"
+                    }
+                ],
+                "projects": [
+                    {
+                        "name": "Insurance Claims Portal",
+                        "description": "Contributed to the development of a comprehensive insurance claims portal, significantly improving claims processing time and client satisfaction.",
+                        "techStack": [
+                            ".NET Core",
+                            "ReactJS",
+                            "Azure"
+                        ],
+                        "dates": "02/2022 - 12/2024"
+                    },
+                    {
+                        "name": "Mobile App for Sustainable Aquaponics",
+                        "description": "Designed a cross-platform mobile application to educate local communities on sustainable aquaponics, leading to increased awareness and practice of eco-friendly farming.",
+                        "techStack": [
+                            "Flutter",
+                            "ASP.NET Core",
+                            "ReactJS"
+                        ],
+                        "dates": "06/2020 - 08/2020"
+                    }
+                ],
+                "achievements": [
+                    "CKAD Certification - Demonstrating commitment to mastering Kubernetes application development.",
+                    "Led team projects that presented innovative solutions to real-world problems during academic tenure."
+                ],
+                "optionalSections": {
+                    "volunteerWork": [
+                        "Volunteer Developer at local tech community initiatives promoting STEM education."
+                    ],
+                    "professionalAffiliations": [
+                        "Member of the DevOps Institute",
+                        "Active participant in local software development meetups"
+                    ],
+                    "interests": [
+                        "Cloud Computing",
+                        "Open Source Technologies",
+                        "Agile Practices"
+                    ]
+                }
+            }
+        }
+    }
+]
