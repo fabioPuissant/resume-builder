@@ -1,0 +1,202 @@
+[
+    {
+        "resume": {
+            "resumeSections": {
+                "personalInfo": {
+                    "name": "Fabio N. Puissant",
+                    "email": "fabio.puissant@example.com",
+                    "phone": "+32 123 456 789",
+                    "linkedin": "https://www.linkedin.com/in/fabio-puissant",
+                    "location": "Hasselt, Belgium"
+                },
+                "summary": "Passionate Software Engineer and Cloud/DevOps practitioner with extensive experience in cloud-native architectures and CI/CD best practices. Proven track record in developing scalable solutions using a variety of technologies and agile methodologies. Dedicated to continuous learning and cross-functional collaboration, with certifications in Kubernetes and Microsoft Azure.",
+                "workExperience": [
+                    {
+                        "jobTitle": "Software Engineer Technical Consultant",
+                        "company": "ACA Consulting",
+                        "location": "Hasselt, Belgium",
+                        "startDate": "01/2024",
+                        "endDate": "Present",
+                        "achievements": [
+                            "Designed and implemented a comprehensive project-resource planning solution using agile methodologies, significantly improving project deliverable timelines by 30%.",
+                            "Developed Java 17 applications within a microservices architecture deployed on Kubernetes (EKS), ensuring high availability and resilience.",
+                            "Integrated Kafka for asynchronous communication, enabling responsive front-end experiences with React (TypeScript) + Redux."
+                        ]
+                    },
+                    {
+                        "jobTitle": "Azure Developer Technical Consultant",
+                        "company": "Delaware Consulting",
+                        "location": "Hasselt, Belgium",
+                        "startDate": "01/2022",
+                        "endDate": "12/2023",
+                        "achievements": [
+                            "Contributed to the development of an insurance claims portal utilizing .NET Core 6, ReactJS, and multiple Azure services, resulting in improved user experience and operational efficiencies.",
+                            "Championed CI/CD pipelines using Azure DevOps, streamlining deployment processes and reducing time-to-market by 25%.",
+                            "Created and managed Infrastructure as Code templates using ARM and Bicep, ensuring consistent resource provisioning across development environments."
+                        ]
+                    },
+                    {
+                        "jobTitle": "Full Stack Engineer Intern",
+                        "company": "BeWired",
+                        "location": "Hasselt, Belgium",
+                        "startDate": "06/2020",
+                        "endDate": "09/2020",
+                        "achievements": [
+                            "Contributed to the development of an internal employee platform, enhancing operational workflows through the effective use of Java, Spring Boot, and AWS.",
+                            "Participated in agile sprints, gaining first-hand experience in Scrum methodologies and team collaboration techniques."
+                        ]
+                    },
+                    {
+                        "jobTitle": "Mobile Application Developer Intern",
+                        "company": "Botlhale Village",
+                        "location": "Pretoria, South Africa",
+                        "startDate": "01/2020",
+                        "endDate": "04/2020",
+                        "achievements": [
+                            "Designed and built a cross-platform Flutter mobile app for local communities, facilitating sustainable aquaponics practices and improving local agricultural efficiency.",
+                            "Integrated an ASP.NET Core backend with a ReactJS frontend to ensure seamless user interactions and data management."
+                        ]
+                    }
+                ],
+                "education": [
+                    {
+                        "degree": "Master of Science in Computer Science (Major in Software Engineering)",
+                        "institution": "Open University",
+                        "location": "Heerlen, NL (Remote)",
+                        "graduationDate": "09/2021",
+                        "relevantCoursework": [
+                            "Software Development",
+                            "Cloud Services",
+                            "DevOps Practices"
+                        ]
+                    },
+                    {
+                        "degree": "Bachelor of Applied Informatics",
+                        "institution": "PXL University of Applied Sciences",
+                        "location": "Hasselt, Belgium",
+                        "graduationDate": "06/2020",
+                        "relevantCoursework": [
+                            "Database Management",
+                            "Software Engineering Methodologies",
+                            "Programming Concepts"
+                        ]
+                    }
+                ],
+                "skills": {
+                    "technical": [
+                        "C#",
+                        "Java (up to Java 17)",
+                        "Python",
+                        "TypeScript",
+                        ".NET Core (6)",
+                        "Spring Boot",
+                        "ReactJS",
+                        "Redux",
+                        "Angular",
+                        "Azure DevOps",
+                        "Terraform",
+                        "Kubernetes",
+                        "GitOps (FluxCD)",
+                        "Docker"
+                    ],
+                    "professional": [
+                        "Agile Methodologies",
+                        "Cross-functional Collaboration",
+                        "Communication",
+                        "Problem-solving",
+                        "Adaptability",
+                        "Continuous Learning"
+                    ]
+                },
+                "certifications": [
+                    {
+                        "name": "CKAD – Certified Kubernetes Application Developer",
+                        "issuer": "Linux Foundation",
+                        "dateEarned": "04/2023"
+                    },
+                    {
+                        "name": "Microsoft Azure Fundamentals",
+                        "issuer": "Microsoft",
+                        "dateEarned": "05/2022"
+                    },
+                    {
+                        "name": "Microsoft Azure Administrator",
+                        "issuer": "Microsoft",
+                        "dateEarned": "06/2022"
+                    },
+                    {
+                        "name": "Microsoft Azure DevOps Solutions",
+                        "issuer": "Microsoft",
+                        "dateEarned": "08/2023"
+                    },
+                    {
+                        "name": "MongoDB SI Associate Certification",
+                        "issuer": "MongoDB",
+                        "dateEarned": "09/2022"
+                    },
+                    {
+                        "name": "Generative AI Fundamentals",
+                        "issuer": "Databricks Academy",
+                        "dateEarned": "06/2024"
+                    }
+                ],
+                "languages": [
+                    {
+                        "language": "Dutch",
+                        "proficiency": "Native"
+                    },
+                    {
+                        "language": "English",
+                        "proficiency": "Proficient"
+                    },
+                    {
+                        "language": "French",
+                        "proficiency": "Basic"
+                    }
+                ],
+                "projects": [
+                    {
+                        "name": "SaaS Password Updater Tool",
+                        "description": "Developed a secure SaaS tool combining a Chrome extension with web automation features enhances user security by ensuring timely password updates across platforms.",
+                        "techStack": [
+                            "React",
+                            "TypeScript",
+                            "Python",
+                            "Selenium"
+                        ],
+                        "dates": "09/2021 - 12/2021"
+                    },
+                    {
+                        "name": "Pig Management System MVP",
+                        "description": "Designed a minimum viable product for managing pig farming operations, optimizing resource allocation, and enhancing farm productivity through data insights.",
+                        "techStack": [
+                            ".NET Core",
+                            "C#",
+                            "Entity Framework"
+                        ],
+                        "dates": "01/2020 - 04/2020"
+                    }
+                ],
+                "achievements": [
+                    "Received the 'Best Intern Project' award in 2020 for developing the cross-platform Flutter mobile application at Botlhale Village.",
+                    "Published a research paper on cloud-native architectures in a peer-reviewed journal in 2021."
+                ],
+                "optionalSections": {
+                    "volunteerWork": [
+                        "Conducted workshops on sustainable farming practices in local communities."
+                    ],
+                    "professionalAffiliations": [
+                        "Member of the Association of Computing Machinery (ACM)",
+                        "Active participant in local tech meetups"
+                    ],
+                    "interests": [
+                        "Cloud Computing",
+                        "Open Source Development",
+                        "IoT Innovations"
+                    ]
+                }
+            }
+        },
+        "refusal": null
+    }
+]

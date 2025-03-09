@@ -1,4 +1,5 @@
 // server.js
+const example = require('./example.json')
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -142,13 +143,13 @@ const resumeData = [
           {
             name: "Cross-Platform Aquaponics Mobile App",
             description: "Designed and built a mobile application ...",
-            techStack: ["Flutter","ASP.NET Core","ReactJS","Redux"],
+            techStack: ["Flutter", "ASP.NET Core", "ReactJS", "Redux"],
             dates: "01/2022 - 04/2022"
           },
           {
             name: "Insurance Claims Portal",
             description: "Architected a cloud-based portal for processing insurance claims ...",
-            techStack: [".NET Core","ReactJS","Azure","Terraform"],
+            techStack: [".NET Core", "ReactJS", "Azure", "Terraform"],
             dates: "06/2022 - 02/2023"
           }
         ],
@@ -176,7 +177,8 @@ const resumeData = [
 ];
 
 app.get('/api/resume', (req, res) => {
-  res.json(resumeData);
+  // res.json(resumeData);
+  res.json(example)
 });
 
 const PORT = process.env.PORT || 5001;
