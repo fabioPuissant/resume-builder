@@ -6,9 +6,9 @@ import EductionSection from './components/sections/Education/Eduction.section';
 import SkillsSection from './components/sections/Skills/Skills.section';
 import SummarySection from './components/sections/Summary/Summary.section';
 import CertificationsSection from './components/sections/Certifications/Certification.section';
-
+import STARTDATA from "../../backend/example2.json"
 function App() {
-  const [resumeData, setResumeData] = useState(null);
+  const [resumeData, setResumeData] = useState(STARTDATA);
 
   useEffect(() => {
     // Fetch from Node Express
